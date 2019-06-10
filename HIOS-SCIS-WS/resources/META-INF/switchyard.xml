@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:1.1" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:1.1" xmlns:sy="urn:switchyard-config:switchyard:1.1" name="hios-scis-ws" targetNamespace="urn:org.cms.scis.app.action:hios-scis-ws:1.0">
+  <sca:composite name="hios-scis-ws" targetNamespace="urn:org.cms.scis.app.action:hios-scis-ws:1.0">
+    <sca:component name="ValidateSCISAction">
+      <bean:implementation.bean class="org.cms.scis.app.action.ValidateSCIDAction"/>
+      <sca:service name="ValidateSCISWebService">
+        <sca:interface.java interface="org.cms.scis.app.action.ValidateSCISWebService"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="ValidateSCIDPortType" promote="ValidateSCISAction/ValidateSCISWebService">
+      <sca:interface.wsdl interface="META-INF/ValidateSCID.wsdl#wsdl.porttype(ValidateSCIDPortType)"/>
+      <soap:binding.soap name="soap1">
+        <soap:wsdl>META-INF/ValidateSCID.wsdl</soap:wsdl>
+        <soap:wsdlPort>ValidateSCIDPortType</soap:wsdlPort>
+        <soap:contextPath>SCIS/ebws/SCIS/ValidateSCID</soap:contextPath>
+      </soap:binding.soap>
+    </sca:service>
+    <sca:component name="GenerateSCISAction">
+      <bean:implementation.bean class="org.cms.scis.app.action.GenerateSCIDAction"/>
+      <sca:service name="GenerateSCISWebService">
+        <sca:interface.java interface="org.cms.scis.app.action.GenerateSCISWebService"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="GenerateSCIDPortType" promote="GenerateSCISAction/GenerateSCISWebService">
+      <sca:interface.wsdl interface="META-INF/GenerateSCID.wsdl#wsdl.porttype(GenerateSCIDPortType)"/>
+      <soap:binding.soap name="soap1">
+        <soap:wsdl>META-INF/GenerateSCID.wsdl</soap:wsdl>
+        <soap:wsdlPort>GenerateSCIDPortType</soap:wsdlPort>
+        <soap:contextPath>SCIS/ebws/SCIS/GenerateSCID</soap:contextPath>
+      </soap:binding.soap>
+    </sca:service>
+    <sca:component name="RetrieveSCISAction">
+      <bean:implementation.bean class="org.cms.scis.app.action.RetrieveSCIDAction"/>
+      <sca:service name="RetrieveSCISWebService">
+        <sca:interface.java interface="org.cms.scis.app.action.RetrieveSCISWebService"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="RetrieveSCIDPortType" promote="RetrieveSCISAction/RetrieveSCISWebService">
+      <sca:interface.wsdl interface="META-INF/RetrieveSCID.wsdl#wsdl.porttype(RetrieveSCIDPortType)"/>
+      <soap:binding.soap name="soap1">
+        <soap:wsdl>META-INF/RetrieveSCID.wsdl</soap:wsdl>
+        <soap:wsdlPort>RetrieveSCIDPortType</soap:wsdlPort>
+        <soap:contextPath>SCIS/ebws/SCIS/RetrieveSCID</soap:contextPath>
+      </soap:binding.soap>
+    </sca:service>
+  </sca:composite>
+</sy:switchyard>

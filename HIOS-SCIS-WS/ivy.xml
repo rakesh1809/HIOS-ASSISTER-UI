@@ -1,0 +1,61 @@
+<ivy-module version="2.3">
+    <info organisation="org.cms.hios" module="HIOS-SCIS-WS" />
+    <configurations>
+		<conf name="package" visibility="public" />
+		<conf name="default" visibility="public" />
+		<conf name="ui" visibility="public" />
+	</configurations>
+	<publications>
+        <artifact name="HIOS-SCIS-WS" type="pom" ext="pom" conf="default,package,ui" />
+        <artifact name="HIOS-SCIS-WS" type="jar" ext="jar" conf="default,package,ui" />
+    </publications>
+    <dependencies defaultconf="default" >
+          <dependency org="org.temp" name="gson" rev="2.2.1" />
+        <dependency org="org.temp" name="jaxb2-basics" rev="0.6.0" />
+        <dependency org="org.temp" name="jaxb2-basics-ant" rev="0.6.0" />
+        <dependency org="org.temp" name="jaxb2-basics-runtime" rev="0.6.0" />
+        <dependency org="org.temp" name="jaxb2-basics-tools" rev="0.6.0" />
+        <dependency org="org.temp" name="jaxb-api" rev="1.0.0" />
+        <dependency org="org.temp" name="jaxb-impl" rev="1.0.0" />
+        <dependency org="org.temp" name="jaxb-xjc" rev="1.0.0" />
+        <dependency org="org.temp" name="commons-lang" rev="2.4" />
+        <dependency org="org.temp" name="org.hamcrest.core" rev="1.0.0" /> 	
+   		<dependency org="org.temp" name="org.springframework.asm" rev="3.1.0.M2" />
+        <dependency org="org.temp" name="org.springframework.beans" rev="3.1.0.M2" />
+        <dependency org="org.temp" name="org.springframework.context" rev="3.1.0.M2" />
+        <dependency org="org.temp" name="org.springframework.core" rev="3.1.0.M2" />
+        <dependency org="org.temp" name="org.springframework.expression" rev="3.1.0.M2" />
+        <dependency org="org.temp" name="org.springframework.jdbc" rev="3.1.0.M2" />
+        <dependency org="org.temp" name="org.springframework.test" rev="3.0.2." />
+        <dependency org="org.temp" name="org.springframework.transaction" rev="3.1.0.M2" />
+        <dependency org="org.temp" name="org.springframework.web" rev="3.0.2." />
+        <dependency org="org.temp" name="slf4j-api" rev="1.0.0" />
+        <dependency org="org.temp" name="slf4j-jboss-logging" rev="1.0.0" />
+        <dependency org="org.temp" name="spring-aop" rev="3.1.0.M2" />
+  		<dependency org="org.temp" name="switchyard-component-camel" rev="2.1.0.Final" />
+        <dependency org="org.temp" name="switchyard-component-camel-core" rev="2.1.0.Final" />
+        <dependency org="org.temp" name="switchyard-component-http" rev="2.1.0.Final" />
+        <dependency org="org.temp" name="switchyard-component-jca" rev="2.1.0.Final" />
+        <dependency org="org.temp" name="switchyard-component-camel-jms" rev="2.1.0.Final" />
+        <dependency org="org.temp" name="switchyard-component-sca" rev="2.1.0.Final" />
+        <dependency org="org.temp" name="switchyard-component-soap" rev="2.1.0.Final" />
+        <dependency org="org.temp" name="switchyard-remote" rev="2.1.0.Final" />
+        <dependency org="org.temp" name="switchyard-api" rev="2.1.0.Final" />
+        <dependency org="org.temp" name="camel-core" rev="2.15.2" />
+        <dependency org="org.temp" name="camel-jms" rev="2.15.2" />
+        <dependency org="org.temp" name="camel-cdi" rev="2.15.2" />
+ 		<dependency org="org.temp" name="camel-spring" rev="2.15.2" />
+ 		<dependency org="org.temp" name="javax.inject" rev="1" />
+ 		<dependency org="org.temp" name="switchyard-component-common" rev="2.1.0.Final" />
+ 		<dependency org="org.temp" name="switchyard-config" rev="2.1.0.Final" />
+ 		<dependency org="org.temp" name="camel-core" rev="2.15.2" />
+ 		<dependency org="org.temp" name="switchyard-component-common-camel" rev="2.1.0.Final" />
+ 		<dependency org="org.temp" name="switchyard-api" rev="2.1.0.Final" />
+ 		<dependency org="org.temp" name="switchyard-bus-camel" rev="2.1.0.Final"/>
+		<dependency org="org.temp" name="snowdrop-vfs" rev="3.1.2.Final"/>
+		<dependency org="org.temp" name="snowdrop-interceptors" rev="3.1.2.Final"/>
+		<dependency org="org.temp" name="snowdrop-subsystem-as7" rev="3.1.2.Final"/>
+		<dependency org="org.temp" name="switchyard-serial" rev="2.1.0.Final"/>
+		<dependency org="org.temp" name="jaxrpc" rev="1.0.0" />
+    </dependencies>
+</ivy-module>

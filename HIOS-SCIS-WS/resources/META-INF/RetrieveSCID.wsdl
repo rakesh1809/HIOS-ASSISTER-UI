@@ -1,0 +1,36 @@
+<wsdl:definitions targetNamespace="http://soa.jboss.org/SCIS" xmlns:esbns1="http://example.ffe.cms.gov/exchange/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://soa.jboss.org/SCIS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://example.ffe.cms.gov/exchange/1.0" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:include schemaLocation="schemas/Retrieve/XMLschemas/constraint/XMLschemas/exchange/ExchangeModel.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="RetrieveSCIDReq">
+        <wsdl:part element="esbns1:Payload" name="in"/>
+    </wsdl:message>
+    <wsdl:message name="RetrieveSCIDRes">
+        <wsdl:part element="esbns1:Payload" name="out"/>
+    </wsdl:message>
+    <wsdl:portType name="RetrieveSCIDPortType">
+        <wsdl:operation name="RetrieveSCIDOp">
+            <wsdl:input message="tns:RetrieveSCIDReq" name="RetrieveSCIDReq"/>
+            <wsdl:output message="tns:RetrieveSCIDRes" name="RetrieveSCIDRes"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="RetrieveSCIDBinding" type="tns:RetrieveSCIDPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="RetrieveSCIDOp">
+            <soap:operation soapAction="http://soa.jboss.org/SCIS/RetrieveSCIDOpResp"/>
+            <wsdl:input name="RetrieveSCIDReq">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="RetrieveSCIDRes">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="RetrieveSCIDService">
+        <wsdl:port binding="tns:RetrieveSCIDBinding" name="RetrieveSCIDPortType">
+            <soap:address location="http://127.0.0.1:8080/SCIS/ebws/SCIS/RetrieveSCID"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

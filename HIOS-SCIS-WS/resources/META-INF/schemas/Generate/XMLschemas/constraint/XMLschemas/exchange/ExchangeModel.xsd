@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:exch="http://example.ffe.cms.gov/exchange/1.0" xmlns:ext="http://example.ffe.cms.gov/extension/1.0" xmlns:i="http://niem.gov/niem/appinfo/2.0" xmlns:niem-xsd="http://niem.gov/niem/proxy/xsd/2.0" xmlns:s="http://niem.gov/niem/structures/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://example.ffe.cms.gov/exchange/1.0" version="1">
+  <xsd:import namespace="http://example.ffe.cms.gov/extension/1.0" schemaLocation="../../../../XMLschemas/constraint/XMLschemas/extension/ExtensionModel.xsd"/>
+  <xsd:import namespace="http://niem.gov/niem/appinfo/2.1" schemaLocation="../../../../XMLschemas/subset/niem/appinfo/2.1/appinfo.xsd"/>
+  <xsd:import namespace="http://niem.gov/niem/appinfo/2.0" schemaLocation="../../../../XMLschemas/subset/niem/appinfo/2.0/appinfo.xsd"/>
+  <xsd:import namespace="http://niem.gov/niem/proxy/xsd/2.0" schemaLocation="../../../../XMLschemas/subset/niem/proxy/xsd/2.0/xsd.xsd"/>
+  <xsd:import namespace="http://niem.gov/niem/structures/2.0" schemaLocation="../../../../XMLschemas/subset/niem/structures/2.0/structures.xsd"/>
+  <xsd:annotation>
+    <xsd:appinfo>
+      <i:ConformantIndicator>true</i:ConformantIndicator>
+    </xsd:appinfo>
+    <xsd:documentation source="">An exchange schema for the generation of a set of Standard Component IDs.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:element abstract="false" name="Payload" nillable="false" type="ext:PayloadType">
+    <xsd:annotation>
+      <xsd:documentation source="">An element that represents the root payload.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+</xsd:schema>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:hios="http://cms.gov/hios" xmlns:hpm="http://hix.cms.gov/0.1/hix-pm" xmlns:i="http://niem.gov/niem/appinfo/2.0" xmlns:nc="http://niem.gov/niem/niem-core/2.0" xmlns:niem-xsd="http://niem.gov/niem/proxy/xsd/2.0" xmlns:s="http://niem.gov/niem/structures/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://cms.gov/hios" version="&quot;1&quot;">
+  <xsd:import namespace="http://niem.gov/niem/niem-core/2.0" schemaLocation="../../../../XMLschemas/constraint/XMLschemas/niem/niem-core.xsd"/>
+  <xsd:import namespace="http://hix.cms.gov/0.1/hix-pm" schemaLocation="../../../../XMLschemas/constraint/XMLschemas/niem/domains/hix/0.1/hix-pm/hix-pm.xsd"/>
+  <xsd:import namespace="http://niem.gov/niem/appinfo/2.1" schemaLocation="../../../../XMLschemas/subset/niem/appinfo/2.1/appinfo.xsd"/>
+  <xsd:import namespace="http://niem.gov/niem/appinfo/2.0" schemaLocation="../../../../XMLschemas/subset/niem/appinfo/2.0/appinfo.xsd"/>
+  <xsd:import namespace="http://niem.gov/niem/proxy/xsd/2.0" schemaLocation="../../../../XMLschemas/subset/niem/proxy/xsd/2.0/xsd.xsd"/>
+  <xsd:import namespace="http://niem.gov/niem/structures/2.0" schemaLocation="../../../../XMLschemas/subset/niem/structures/2.0/structures.xsd"/>
+  <xsd:simpleType name="IDAlphaNumSimpleType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:name="Object" i:namespace="http://niem.gov/niem/structures/2.0"/>
+      </xsd:appinfo>
+      <xsd:documentation source="">A data type for an alpha-numeric identifier.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[A-Za-z0-9]*"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:annotation>
+    <xsd:appinfo>
+      <i:ConformantIndicator>true</i:ConformantIndicator>
+    </xsd:appinfo>
+    <xsd:documentation source="">An extension schema with common components needed to support Standard Component Identifier web services.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType abstract="false" mixed="false" name="IDAlphaNum14Type">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:name="Object" i:namespace="http://niem.gov/niem/structures/2.0"/>
+      </xsd:appinfo>
+      <xsd:documentation source="">A data type for a 14-character alpha-numeric identifier.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="hios:IDAlphaNum14SimpleType">
+        <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="IDAlphaNum14SimpleType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:name="Object" i:namespace="http://niem.gov/niem/structures/2.0"/>
+      </xsd:appinfo>
+      <xsd:documentation source="">A data type for a 14-character alpha-numeric identifier.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="hios:IDAlphaNumSimpleType">
+      <xsd:length value="14"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType abstract="false" mixed="false" name="IDAlphaNumType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:name="Object" i:namespace="http://niem.gov/niem/structures/2.0"/>
+      </xsd:appinfo>
+      <xsd:documentation source="">A data type for an alpha-numeric identifier.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="hios:IDAlphaNumSimpleType">
+        <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="ResponseCodeSimpleType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:name="Object" i:namespace="http://niem.gov/niem/structures/2.0"/>
+      </xsd:appinfo>
+      <xsd:documentation source="">A data type for a coded response.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="Success">
+        <xsd:annotation>
+          <xsd:documentation source="">Success</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="SuccessWithErrors">
+        <xsd:annotation>
+          <xsd:documentation source="">Success with Errors</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Error">
+        <xsd:annotation>
+          <xsd:documentation source="">Error</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType abstract="false" mixed="false" name="SCIDStandardComponentIdentificationType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <Base xmlns="http://niem.gov/niem/appinfo/2.0" i:name="StandardComponentIdentificationType" i:namespace="http://hix.cms.gov/0.1/hix-pm"/>
+      </xsd:appinfo>
+      <xsd:documentation source="">A data type for an insurance plan identification established by the Centers for Medicare &amp; Medicaid Systems.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:restriction base="hpm:StandardComponentIdentificationType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" ref="hpm:StandardComponentID"/>
+        </xsd:sequence>
+      </xsd:restriction>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="false" mixed="false" name="SCIDInsuranceProductType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <Base xmlns="http://niem.gov/niem/appinfo/2.0" i:name="InsuranceProductType" i:namespace="http://hix.cms.gov/0.1/hix-pm"/>
+      </xsd:appinfo>
+      <xsd:documentation source="">A data type for an insurance product with information specific to standard component web service interactions.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="hpm:InsuranceProductType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" ref="hios:InsuranceProductPlanIdentifiersRequestedQuantity"/>
+          <xsd:element maxOccurs="1" minOccurs="0" ref="hios:InsuranceProductPlanIdentifiersCreatedQuantity"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element abstract="false" name="InsuranceProductPlanIdentifiersRequestedQuantity" nillable="false" type="nc:QuantityType">
+    <xsd:annotation>
+      <xsd:documentation source="">A count of the standard component identifiers being requested.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element abstract="false" name="InsuranceProductPlanIdentifiersCreatedQuantity" nillable="false" type="nc:QuantityType">
+    <xsd:annotation>
+      <xsd:documentation source="">A count of the standard component identifiers assigned to insurance plans within an insurance product.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType abstract="false" mixed="false" name="BooleanCodeType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:name="Object" i:namespace="http://niem.gov/niem/structures/2.0"/>
+      </xsd:appinfo>
+      <xsd:documentation source="">A data type for binary-valued logic (true/false).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="hios:BooleanCodeSimpleType">
+        <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:simpleType name="BooleanCodeSimpleType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:name="Object" i:namespace="http://niem.gov/niem/structures/2.0"/>
+      </xsd:appinfo>
+      <xsd:documentation source="">A data type for binary-valued logic (true/false).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="true">
+        <xsd:annotation>
+          <xsd:documentation source="">True</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="false">
+        <xsd:annotation>
+          <xsd:documentation source="">False</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType abstract="false" mixed="false" name="ResponseCodeType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:name="Object" i:namespace="http://niem.gov/niem/structures/2.0"/>
+      </xsd:appinfo>
+      <xsd:documentation source="">A data type for a coded response.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="hios:ResponseCodeSimpleType">
+        <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+</xsd:schema>

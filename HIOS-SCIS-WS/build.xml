@@ -1,0 +1,154 @@
+<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." default="snapshot" name="HIOS-SCIS-WS">
+
+		<property name="build" value="${basedir}/build"/>
+		<property name="build.meta-inf" value="${build}/META-INF"/>
+		<property name="lib" value="${basedir}/lib"/>
+		<property name="provided-lib" value="${basedir}/provided-libs"/>
+		<property name="dist" value="${basedir}/dist"/>
+		<property name="src" location="${basedir}/src"/>
+	    <property name="gensrc" location="${basedir}/gen-src"/>
+	
+	    <property name="build.hios.global.ant.dir" value="${basedir}/../HIOS-GLOBAL-DATA"/> 
+		<property name="common.base.dir" value="${basedir}/../HIOS-COMMON"/> 
+
+		<property name="version.number" value="0"/>
+	
+		<property name="sonar.binaries" value="build"/>
+		<property name="sonar.projectKey" value="HIOS-SCIS-WS" />
+		<property name="sonar.projectName" value="HIOS-SCIS-WS" />
+	
+		<property name="sonar.projectVersion" value="${version.number}" />
+
+		<path id="project.lib.classpath">
+			<fileset dir="${lib}">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+
+		<path id="project.test.classpath">
+			<fileset dir="${lib}">
+				<include name="*.jar" />
+			</fileset>
+			<pathelement location="${build}" />
+			<pathelement location="${basedir}/test-resources" />
+			<pathelement location="${basedir}/resources" />
+		</path>
+
+	<import file="../HIOS-BUILD/common.xml"/>
+	
+		<target name="init">
+			<mkdir dir="${dist}"/>
+			<mkdir dir="${build.meta-inf}"/>
+			<mkdir dir="${build}"/>
+		</target>
+	
+		<target name="clean">
+				<delete dir="${dist}"  />
+				<delete dir="${build}"  />
+		</target>
+	
+	
+		<target name="dist" depends="distSkipTest"/> 
+
+		<!--<target name="distSkipTest" depends="clean, esb, client"/> -->
+ 	
+	   <target name="distSkipTest" depends="clean, esb"/> 
+	
+	
+		<target name="esb" depends="esb-prep">
+				<tstamp>
+					<format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss" />
+				</tstamp>
+				<manifest file="MANIFEST.MF">
+					<attribute name="Implementation-Version" value="${version.number}"/>
+					<attribute name="Built-Date" value="${TODAY}"/>
+					<attribute name="SVN-Tag" value="${build.guid}"/>
+				</manifest>
+				<jar jarfile="${dist}/${ant.project.name}.jar" basedir="${build}" 
+					update="true" manifest="MANIFEST.MF">
+					<exclude name="**/*client" />
+				</jar>
+		</target>
+	
+	
+		<target name="esb-prep" depends="jar-prep">
+				<!--copy todir="${build.meta-inf}">
+					<fileset dir="${basedir}/esbcontent/META-INF/">
+						<include name="jboss-esb.xml" />
+						<include name="deployment.xml" />
+					</fileset>
+				</copy>
+				<copy todir="${build}">
+					<fileset dir="${basedir}/resources/">
+						<include name="hornetq-jms.xml" />
+						<include name="jbm-queue-service.xml" />
+					</fileset>
+				</copy-->
+				<!--copy todir="${build}/lib">
+					<fileset dir="${lib}"/>
+				</copy-->
+		</target>
+	
+	<target name="jar-prep" depends="compile">
+
+		<copy todir="${build}/">
+			<fileset dir="${basedir}/resources" />
+		</copy>
+		
+	</target>
+	
+	
+		<target name="compile" depends="init, jaxbConvert">
+			<!-- Compile the java code from ${src} into ${build} -->
+			<javac debug="true" includeantruntime="false" srcdir="${gensrc}" destdir="${build}">
+				<classpath>
+					<path refid="project.lib.classpath"/>
+				</classpath>
+			</javac>
+			<javac debug="true" includeantruntime="false" srcdir="${src}" destdir="${build}">
+				<classpath>
+					<path refid="project.lib.classpath"/>
+				</classpath>
+				<exclude name="**/client/**/*.java" />
+			</javac>
+			
+		</target>
+			
+
+	<target name="jaxbConvert" depends="deps" description="compile the source " >
+		<taskdef name="xjc" classname="org.jvnet.jaxb2_commons.xjc.XJC2Task">
+			<classpath>
+				<fileset dir="${lib}" includes="*.jar" />
+			</classpath>
+		</taskdef>
+			<!--xjc destdir="gensrc" package="com.cgifederal.www" >
+				<arg line="-npa -verbose"/>
+					   <schema  dir="schemas/hpoes/XMLschemas/constraint/XMLschemas/exchange" includes="ExchangeModel.xsd" />
+					   <binding dir="schemas" includes="JAXBBinding.xml" />
+						<!- - <binding dir="schemas" includes="ValidateBinding.xml" /> - - >
+					   <arg value="-episode" /> 
+					   <arg value="${build}/META-INF/sun-validate-jaxb.episode" />
+			</xjc-->
+
+	   	</target>	
+	
+	<target name="deps" depends="svn-branch,install-ivy,external-deps" description="--> resolve dependencies, and put them in ./lib">
+		<echo message="pulling deps... into lib" />
+		
+		<branchdecider org="org.cms.hios" modulename="HIOS-COMMON" />
+		<branchdecider org="org.cms.hios" modulename="HIOS-SCIS-WS-DATA" />
+		<ivy:resolve>
+			
+			<dependency org="org.cms.hios" name="HIOS-COMMON" rev="latest.integration" branch="${HIOS-COMMON.branch.choice}" conf="default" />
+			<dependency org="org.cms.hios" name="HIOS-SCIS-WS-DATA" rev="latest.integration" branch="${HIOS-SCIS-WS-DATA.branch.choice}" conf="default" />					
+		</ivy:resolve>
+		<ivy:retrieve pattern="lib/[artifact](-[classifier]).[ext]" type="tar,jar"/>
+	</target>
+
+		
+	</project>
+
+
+
+
+

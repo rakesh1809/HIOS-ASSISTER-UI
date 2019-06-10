@@ -1,0 +1,7 @@
+<ivysettings>
+  <include url="../HIOS-BUILD/ivysettings-common.xml"/>
+    <modules>
+    	<module organisation="org.cms.hios" name="HIOS-COMMON" matcher="regexp" resolver="nexus-chain"/>
+ 		<module organisation="org.cms.hios" name="HIOS-SCIS-WS-DATA" matcher="regexp" resolver="nexus-chain"/>
+    </modules>
+</ivysettings>

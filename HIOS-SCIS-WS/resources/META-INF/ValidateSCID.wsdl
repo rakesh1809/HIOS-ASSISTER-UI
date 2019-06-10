@@ -1,0 +1,36 @@
+<wsdl:definitions targetNamespace="http://soa.jboss.org/SCIS" xmlns:esbns1="http://example.ffe.cms.gov/exchange/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://soa.jboss.org/SCIS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://example.ffe.cms.gov/exchange/1.0" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:include schemaLocation="schemas/Validate/XMLschemas/constraint/XMLschemas/exchange/ExchangeModel.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ValidateSCIDReq">
+        <wsdl:part element="esbns1:Payload" name="in"/>
+    </wsdl:message>
+    <wsdl:message name="ValidateSCIDRes">
+        <wsdl:part element="esbns1:Payload" name="out"/>
+    </wsdl:message>
+    <wsdl:portType name="ValidateSCIDPortType">
+        <wsdl:operation name="ValidateSCIDOp">
+            <wsdl:input message="tns:ValidateSCIDReq" name="ValidateSCIDReq"/>
+            <wsdl:output message="tns:ValidateSCIDRes" name="ValidateSCIDRes"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ValidateSCIDBinding" type="tns:ValidateSCIDPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ValidateSCIDOp">
+            <soap:operation soapAction="http://soa.jboss.org/SCIS/ValidateSCIDOpResp"/>
+            <wsdl:input name="ValidateSCIDReq">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ValidateSCIDRes">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ValidateSCIDService">
+        <wsdl:port binding="tns:ValidateSCIDBinding" name="ValidateSCIDPortType">
+            <soap:address location="http://127.0.0.1:8080/SCIS/ebws/SCIS/ValidateSCID"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

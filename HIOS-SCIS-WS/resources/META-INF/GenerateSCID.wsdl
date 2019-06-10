@@ -1,0 +1,36 @@
+<wsdl:definitions targetNamespace="http://soa.jboss.org/SCIS" xmlns:esbns1="http://example.ffe.cms.gov/exchange/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://soa.jboss.org/SCIS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://example.ffe.cms.gov/exchange/1.0" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:include schemaLocation="schemas/Generate/XMLschemas/constraint/XMLschemas/exchange/ExchangeModel.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="GenerateSCIDReq">
+        <wsdl:part element="esbns1:Payload" name="in"/>
+    </wsdl:message>
+    <wsdl:message name="GenerateSCIDRes">
+        <wsdl:part element="esbns1:Payload" name="out"/>
+    </wsdl:message>
+    <wsdl:portType name="GenerateSCIDPortType">
+        <wsdl:operation name="GenerateSCIDOp">
+            <wsdl:input message="tns:GenerateSCIDReq" name="GenerateSCIDReq"/>
+            <wsdl:output message="tns:GenerateSCIDRes" name="GenerateSCIDRes"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GenerateSCIDBinding" type="tns:GenerateSCIDPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GenerateSCIDOp">
+            <soap:operation soapAction="http://soa.jboss.org/SCIS/GenerateSCIDOpResp"/>
+            <wsdl:input name="GenerateSCIDReq">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="GenerateSCIDRes">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="GenerateSCIDService">
+        <wsdl:port binding="tns:GenerateSCIDBinding" name="GenerateSCIDPortType">
+            <soap:address location="http://127.0.0.1:8080/SCIS/ebws/SCIS/GenerateSCID"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

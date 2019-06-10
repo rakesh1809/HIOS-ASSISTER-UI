@@ -1,0 +1,12 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:jboss="http://www.jboss.org/schema/snowdrop"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.jboss.org/schema/snowdrop
+                        http://www.jboss.org/schema/snowdrop/snowdrop.xsd">
+    <description>BeanFactory=(HIOS-SCIS-WS)</description>
+    <bean id="scisServiceLocator" class="org.cms.scis.app.service.SCISServiceLocator"/>
+    <import resource="spring_client_beans.xml"/>
+   
+</beans>

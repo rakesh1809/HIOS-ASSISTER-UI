@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:ext="http://example.ffe.cms.gov/extension/1.0" xmlns:hcore="http://hix.cms.gov/0.1/hix-core" xmlns:hpm="http://hix.cms.gov/0.1/hix-pm" xmlns:i="http://niem.gov/niem/appinfo/2.0" xmlns:niem-xsd="http://niem.gov/niem/proxy/xsd/2.0" xmlns:s="http://niem.gov/niem/structures/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://example.ffe.cms.gov/extension/1.0" version="1">
+  <xsd:import namespace="http://hix.cms.gov/0.1/hix-core" schemaLocation="../../../../XMLschemas/constraint/XMLschemas/niem/domains/hix/0.1/hix-core/hix-core.xsd"/>
+  <xsd:import namespace="http://hix.cms.gov/0.1/hix-pm" schemaLocation="../../../../XMLschemas/constraint/XMLschemas/niem/domains/hix/0.1/hix-pm/hix-pm.xsd"/>
+  <xsd:import namespace="http://niem.gov/niem/appinfo/2.1" schemaLocation="../../../../XMLschemas/subset/niem/appinfo/2.1/appinfo.xsd"/>
+  <xsd:import namespace="http://niem.gov/niem/appinfo/2.0" schemaLocation="../../../../XMLschemas/subset/niem/appinfo/2.0/appinfo.xsd"/>
+  <xsd:import namespace="http://niem.gov/niem/proxy/xsd/2.0" schemaLocation="../../../../XMLschemas/subset/niem/proxy/xsd/2.0/xsd.xsd"/>
+  <xsd:import namespace="http://niem.gov/niem/structures/2.0" schemaLocation="../../../../XMLschemas/subset/niem/structures/2.0/structures.xsd"/>
+  <xsd:annotation>
+    <xsd:appinfo>
+      <i:ConformantIndicator>true</i:ConformantIndicator>
+    </xsd:appinfo>
+    <xsd:documentation source="">An extension schema with components needed for the generation of a set of Standard Component IDs.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType abstract="false" mixed="false" name="PayloadType">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:name="Object" i:namespace="http://niem.gov/niem/structures/2.0"/>
+      </xsd:appinfo>
+      <xsd:documentation source="">A data type for the payload.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="s:ComplexObjectType">
+        <xsd:sequence>
+        	<xsd:element maxOccurs="60" minOccurs="1" ref="hpm:Issuer" />
+        	<xsd:element maxOccurs="1" minOccurs="0"
+        		ref="hcore:ResponseMetadata" />
+        	<xsd:element maxOccurs="unbounded" minOccurs="0"
+        		ref="hcore:ErrorMetadata" />
+
+        	<xsd:element name="OrginalRequest" type="ext:OriginalRequest" maxOccurs="1" minOccurs="0"></xsd:element>
+        	<xsd:element name="RequestUserId" type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+    <xsd:complexType abstract="false" mixed="false" name="OriginalRequest">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <i:Base i:name="Object" i:namespace="http://niem.gov/niem/structures/2.0"/>
+      </xsd:appinfo>
+      <xsd:documentation source="">A data type for the payload.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="s:ComplexObjectType">
+        <xsd:sequence>
+          <xsd:element maxOccurs="60" minOccurs="1" ref="hpm:Issuer"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+</xsd:schema>

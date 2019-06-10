@@ -1,0 +1,9 @@
+<jboss-deployment-structure>  
+    <deployment>  
+        <dependencies>  
+            <module name="org.cms.hios.common" slot="main" meta-inf="import"/>
+            <module name="deployment.HIOS-SCIS-WS-DATA-CLIENT.jar" export="true"/>
+            <module name="org.infinispan" export="true"/>
+        </dependencies>  
+    </deployment>  
+</jboss-deployment-structure>
